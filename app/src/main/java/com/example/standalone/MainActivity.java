@@ -23,8 +23,7 @@ public class MainActivity extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN
         );
 
-
-
+        getSupportActionBar().hide();
         setContentView(new Game(this));
     }
 }
