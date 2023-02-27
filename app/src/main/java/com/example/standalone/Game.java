@@ -16,6 +16,7 @@ import androidx.core.content.ContextCompat;
 
 public class Game extends SurfaceView implements SurfaceHolder.Callback {
     private final Player player;
+    private final Joystick joystick;
     private GameLoop gameloop;
 
 
@@ -28,6 +29,9 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
 
         gameloop = new GameLoop(this, surfaceholder);
 
+        //Inisialisasi Joystick
+        joystick = new Joystick(260, 800, 70, 40);
+
         //Inisialisasi Player
         player = new Player(getContext(), 2*500, 500, 30);
 
@@ -37,14 +41,23 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
     @Override
     public boolean onTouchEvent(MotionEvent event) {
 
-        //megurusi touch event
+        //megurusi touch event dan Joystick
         switch(event.getAction()){
             case MotionEvent.ACTION_DOWN:
-                player.setPosition((double) event.getX(), (double) event.getY());
+                if(joystick.isPressed((double) event.getX(), (double) event.getY())) {
+                    joystick.setIsPressed(true);
+                }
                 return true;
 
             case MotionEvent.ACTION_MOVE:
-                player.setPosition((double) event.getX(), (double) event.getY());
+                if(joystick.getIsPressed()){
+                    joystick.setActuator((double) event.getX(), (double) event.getY());
+                }
+                return true;
+
+            case MotionEvent.ACTION_UP:
+                joystick.setIsPressed(false);
+                joystick.resetActuator();
                 return true;
 
         }
@@ -72,6 +85,7 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
         drawUPS(canvas);
         drawFPS(canvas);
 
+        joystick.draw(canvas);
         player.draw(canvas);
     }
 
@@ -90,11 +104,12 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
         int color = ContextCompat.getColor(getContext(), R.color.yellow);
         paint.setColor(color);
         paint.setTextSize(30);
-        canvas.drawText("UPS : " + averageFPS, 95, 150, paint);
+        canvas.drawText("FPS : " + averageFPS, 95, 150, paint);
     }
 
     public void update() {
         //update Game State
-        player.update();
+        joystick.update();
+        player.update(joystick);
     }
 }
