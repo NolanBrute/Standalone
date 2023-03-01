@@ -11,4 +11,6 @@
     <color name="player">#0362F6</color>
     <color name="enemy">#990000</color>
     <color name="spell">#e35f00</color>
+    <color name="healthBarBorder">#C0C0C0</color>
+    <color name="healthBarHealth">#04FF04</color>
 </resources>

@@ -185,6 +185,7 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
 
                 //Menghapus Musuh bila musuh bertabrakan dengan Player
                 iteratorEnemy.remove();
+                player.setHealthPoints(player.getHealPoints() - 1);
 
                 continue;
             }
