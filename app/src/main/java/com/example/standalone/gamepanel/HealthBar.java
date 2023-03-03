@@ -1,4 +1,4 @@
-package com.example.standalone.objects;
+package com.example.standalone.gamepanel;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -7,6 +7,7 @@ import android.graphics.Paint;
 import androidx.core.content.ContextCompat;
 
 import com.example.standalone.R;
+import com.example.standalone.gameobjects.Player;
 
 /**
  *  Healthbar bertanggung jawab untuk Menampilkan Nyawa dari sang pemain, jika musuh berhasil menyentuh pemain

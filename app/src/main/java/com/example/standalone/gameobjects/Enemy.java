@@ -1,4 +1,4 @@
-package com.example.standalone.objects;
+package com.example.standalone.gameobjects;
 
 /*
     Enemy / Musuh adalah Object yang nanti akan mengejar sang player, anggap saja seperti Zombie,

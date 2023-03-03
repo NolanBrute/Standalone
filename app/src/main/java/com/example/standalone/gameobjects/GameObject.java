@@ -1,4 +1,4 @@
-package com.example.standalone.objects;
+package com.example.standalone.gameobjects;
 
 import android.graphics.Canvas;
 
@@ -26,18 +26,18 @@ public abstract class GameObject {
 
     public abstract void update();
 
-    protected double getPositionX() {
+    public double getPositionX() {
         return positionX;
     }
 
-    protected double getPositionY() {
+    public double getPositionY() {
         return positionY;
     }
 
-    protected double getDirectionX() {
+    public double getDirectionX() {
         return directionX;
     }
-    protected double getDirectionY() {
+    public double getDirectionY() {
         return directionY;
     }
 }

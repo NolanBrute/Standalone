@@ -1,4 +1,4 @@
-package com.example.standalone.objects;
+package com.example.standalone.gameobjects;
 
 public class Utils {
 

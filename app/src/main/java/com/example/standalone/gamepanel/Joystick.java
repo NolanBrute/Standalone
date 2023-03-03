@@ -1,10 +1,10 @@
-package com.example.standalone;
+package com.example.standalone.gamepanel;
 
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 
-import com.example.standalone.objects.Utils;
+import com.example.standalone.gameobjects.Utils;
 
 public class Joystick {
 
