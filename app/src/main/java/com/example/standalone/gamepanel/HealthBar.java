@@ -6,6 +6,7 @@ import android.graphics.Paint;
 
 import androidx.core.content.ContextCompat;
 
+import com.example.standalone.GameDisplay;
 import com.example.standalone.R;
 import com.example.standalone.gameobjects.Player;
 
@@ -35,7 +36,7 @@ public class HealthBar {
         healthPaint.setColor(healthColor);
 
     }
-    public void draw(Canvas canvas){
+    public void draw(Canvas canvas, GameDisplay gameDisplay){
         float x = (float) player.getPositionX();
         float y = (float) player.getPositionY();
         float distanceToPlayer = 30;
@@ -48,7 +49,13 @@ public class HealthBar {
         borderBottom = y - distanceToPlayer;
         borderTop = borderBottom - height;
 
-        canvas.drawRect(borderLeft, borderTop, borderRight, borderBottom, borderPaint);
+        canvas.drawRect(
+                (float) gameDisplay.gameToDisplayCoordinatesX (borderLeft),
+                (float) gameDisplay.gameToDisplayCoordinatesY (borderTop),
+
+                (float) gameDisplay.gameToDisplayCoordinatesX (borderRight),
+                (float) gameDisplay.gameToDisplayCoordinatesY (borderBottom),
+                borderPaint);
 
         //Menggambar Nyawa
         float healthLeft, healthTop, healthRight, healthBottom, healthWidth, healthHeight;
@@ -59,6 +66,12 @@ public class HealthBar {
         healthBottom = borderBottom - margin;
         healthTop = healthBottom - healthHeight;
 
-        canvas.drawRect(healthLeft, healthTop, healthRight, healthBottom, healthPaint);
+        canvas.drawRect(
+                (float) gameDisplay.gameToDisplayCoordinatesX (healthLeft),
+                (float) gameDisplay.gameToDisplayCoordinatesY (healthTop),
+
+                (float) gameDisplay.gameToDisplayCoordinatesX (healthRight),
+                (float) gameDisplay.gameToDisplayCoordinatesY (healthBottom),
+                healthPaint);
     }
 }

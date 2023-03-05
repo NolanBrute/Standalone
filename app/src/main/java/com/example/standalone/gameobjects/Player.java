@@ -5,6 +5,7 @@ import android.graphics.Canvas;
 
 import androidx.core.content.ContextCompat;
 
+import com.example.standalone.GameDisplay;
 import com.example.standalone.GameLoop;
 import com.example.standalone.gamepanel.Joystick;
 import com.example.standalone.R;
@@ -47,9 +48,9 @@ public class Player extends Circle {
         }
     }
 
-    public void draw(Canvas canvas){
-        super.draw(canvas);
-        healthBar.draw(canvas);
+    public void draw(Canvas canvas, GameDisplay gameDisplay){
+        super.draw(canvas, gameDisplay);
+        healthBar.draw(canvas, gameDisplay);
 
     }
 

@@ -1,9 +1,11 @@
 package com.example.standalone;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.os.PerformanceHintManager;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
@@ -39,6 +41,7 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
     private int numberOfSpellsToCast = 0;
     private GameOver gameOver;
     private Performance performance;
+    private GameDisplay gameDisplay;
 
 
     public Game(Context context) {
@@ -60,6 +63,16 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
 
         //Inisialisasi Musuh
         //enemy = new Enemy(getContext(),player, 500, 200, 30);
+
+        //Inisialisasi Game Display dan Menenmpatkan player di tengah layar
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+
+        ((Activity) getContext()).getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        gameDisplay = new GameDisplay(
+                displayMetrics.widthPixels,
+                displayMetrics.heightPixels,
+                player);
+
 
         setFocusable(true);
     }
@@ -136,15 +149,14 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
     public void draw(Canvas canvas) {
         super.draw(canvas);
 
-        joystick.draw(canvas);
-        player.draw(canvas);
+        player.draw(canvas, gameDisplay);
 
         for (Enemy enemy : enemyList){
-            enemy.draw(canvas);
+            enemy.draw(canvas, gameDisplay);
         }
 
         for (Spell spell : spellList) {
-            spell.draw(canvas);
+            spell.draw(canvas, gameDisplay);
         }
 
         //Menggambar Game panel
@@ -214,6 +226,7 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
                 }
             }
         }
+        gameDisplay.update();
     }
 
     public void pause() {
