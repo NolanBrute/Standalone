@@ -112,8 +112,13 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
     }
 
     @Override
-    public void surfaceCreated(@NonNull SurfaceHolder surfaceHolder) {
+    public void surfaceCreated(@NonNull SurfaceHolder holder) {
         Log.d("Game.java", "surfaceCreated()");
+
+        if (gameloop.getState().equals(Thread.State.TERMINATED)){
+
+                gameloop = new GameLoop(this, holder);
+        }
         gameloop.startLoop();
     }
 
@@ -215,3 +220,12 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
         gameloop.stopLoop();
     }
 }
+
+
+/**
+        if (gameLoop.getState().equals(Thread.State.TERMINATED)) {
+                SurfaceHolder surfaceHolder = getHolder();
+                surfaceHolder.addCallback(this);
+                gameLoop = new GameLoop(this, surfaceHolder);
+                }
+ **/

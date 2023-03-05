@@ -65,12 +65,12 @@ public class MainActivity extends AppCompatActivity {
         super.onStop();
     }
 
-    /**
+
     @Override
     public void onBackPressed() {
         Log.d("MainActivity.java", "onBackPressed()");
         //Di Comment agar tidak ada action 'Back'
         //super.onBackPressed();
     }
-    **/
+
 }
