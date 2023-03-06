@@ -21,6 +21,7 @@ import com.example.standalone.gameobjects.Spell;
 import com.example.standalone.gamepanel.GameOver;
 import com.example.standalone.gamepanel.Joystick;
 import com.example.standalone.gamepanel.Performance;
+import com.example.standalone.graphics.SpriteSheet;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -59,7 +60,8 @@ public class Game extends SurfaceView implements SurfaceHolder.Callback {
         joystick = new Joystick(260, 800, 70, 40);
 
         //Inisialisasi Player
-        player = new Player(context,joystick, 2*500, 500, 30);
+        SpriteSheet spriteSheet = new SpriteSheet(context);
+        player = new Player(context,joystick, 2*500, 500, 30, spriteSheet.getPlayerSprite());
 
         //Inisialisasi Musuh
         //enemy = new Enemy(getContext(),player, 500, 200, 30);

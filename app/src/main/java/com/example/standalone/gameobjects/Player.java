@@ -10,6 +10,8 @@ import com.example.standalone.GameLoop;
 import com.example.standalone.gamepanel.Joystick;
 import com.example.standalone.R;
 import com.example.standalone.gamepanel.HealthBar;
+import com.example.standalone.gamepanel.Performance;
+import com.example.standalone.graphics.Sprite;
 
 /*
     Player adalah Karakter Utama yang akan dan bisa kita kendalikan dengan
@@ -23,11 +25,13 @@ public class Player extends Circle {
     public final Joystick joystick;
     public HealthBar healthBar;
     public int healthPoints;
+    private Sprite sprite;
 
-    public Player(Context context ,Joystick joystick, double positionX, double positionY,double radius){
+    public Player(Context context ,Joystick joystick, double positionX, double positionY,double radius, Sprite sprite){
         super(context, ContextCompat.getColor(context, R.color.player), positionX, positionY, radius);
         this.joystick = joystick;
         this.healthBar = new HealthBar(context,this);
+        this.sprite = sprite;
         this.healthPoints = MAX_HEALTH_POINTS;
     }
 
@@ -49,7 +53,13 @@ public class Player extends Circle {
     }
 
     public void draw(Canvas canvas, GameDisplay gameDisplay){
-        super.draw(canvas, gameDisplay);
+        sprite.draw(
+                canvas,
+                (int) gameDisplay.gameToDisplayCoordinatesX(getPositionX()) - 32,
+                (int) gameDisplay.gameToDisplayCoordinatesY(getPositionY()) - 32
+
+                );
+
         healthBar.draw(canvas, gameDisplay);
 
     }
